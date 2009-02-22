@@ -1,0 +1,29 @@
+<project name="root" default="deploy" basedir=".">
+
+  <property name="jsp.home" value="${basedir}/jsp" />
+  <property name="src.home" value="${basedir}/src" />
+  <property name="build.home" value="${basedir}/build" />
+  <property name="deploy.home" value="${basedir}/deploy" />
+
+  <target name="compile">
+    <ant antfile="${src.home}/build.xml" target="compile" />
+  </target>
+
+  <target name="war">
+    <war destfile="${deploy.home}/ROOT.war" basedir="${jsp.home}" webxml="etc/web.xml">
+      <lib dir="${src.home}/lib" />
+      <classes dir="${build.home}" />
+    </war>
+  </target>
+
+  <target name="deploy" depends="compile">
+    <mkdir dir="${deploy.home}" />
+    <antcall target="war" />
+  </target>
+
+  <target name="clean">
+    <ant antfile="${src.home}/build.xml" target="clean" />
+    <delete dir="${deploy.home}" />
+  </target>
+
+</project>

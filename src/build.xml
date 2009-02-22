@@ -1,0 +1,21 @@
+<project name="src" default="compile" basedir="..">
+
+  <property name="src.home" value="${basedir}/src" />
+  <property name="build.home" value="${basedir}/build" />
+
+  <path id="compile.classpath">
+    <fileset dir="${src.home}/lib">
+      <include name="*.jar" />
+    </fileset>
+  </path>
+
+  <target name="compile">
+    <mkdir dir="${build.home}" />
+    <javac srcdir="${src.home}" destdir="${build.home}" classpathref="compile.classpath" />
+  </target>
+
+  <target name="clean">
+    <delete dir="${build.home}" />
+  </target>
+
+</project>
