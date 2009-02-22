@@ -10,7 +10,8 @@ public class PageViews
     {
         try
         {
-            PreparedStatement sqlStatement = DataSource.getConnection().prepareStatement("select fn_logpageview(?, ?, ?, ?, ?, ?)");
+            Connection c = DataSource.getConnection();
+            PreparedStatement sqlStatement = c.prepareStatement("select fn_logpageview(?, ?, ?, ?, ?, ?)");
 
             sqlStatement.setString(1, serverip);
             sqlStatement.setString(2, clientip);
@@ -20,6 +21,7 @@ public class PageViews
             sqlStatement.setString(6, acceptlanguage);
 
             sqlStatement.executeQuery();
+            c.close();
         }
         catch (SQLException e)
         {

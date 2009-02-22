@@ -10,7 +10,8 @@ public class Events
     {
         try
         {
-            PreparedStatement sqlStatement = DataSource.getConnection().prepareStatement("select fn_logevent(?, ?, ?, ?)");
+            Connection c = DataSource.getConnection();
+            PreparedStatement sqlStatement = c.prepareStatement("select fn_logevent(?, ?, ?, ?)");
 
             sqlStatement.setString(1, severity);
             sqlStatement.setString(2, component);
@@ -18,6 +19,7 @@ public class Events
             sqlStatement.setString(4, message);
 
             sqlStatement.executeUpdate();
+            c.close();
         }
         catch (SQLException e)
         {

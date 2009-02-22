@@ -17,7 +17,8 @@ public class User
     {
         try
         {
-            PreparedStatement sqlStatement = DataSource.getConnection().prepareStatement("select fn_login(?, ?)");
+            Connection c = DataSource.getConnection();
+            PreparedStatement sqlStatement = c.prepareStatement("select fn_login(?, ?)");
 
             sqlStatement.setString(1, username);
             sqlStatement.setString(2, password);
@@ -28,6 +29,7 @@ public class User
             {
                 this.username = results.getString("fn_login");
             }
+            c.close();
         }
         catch (SQLException e)
         {
@@ -53,9 +55,12 @@ public class User
     public Collection<IngredientLink> getIngredients()
     {
         Collection<IngredientLink> ingredients = new LinkedList<IngredientLink>();
+
+        Connection c;
         try
         {
-            PreparedStatement sqlStatement = DataSource.getConnection().prepareStatement("select * from fn_useringredients(?, ?)");
+            c = DataSource.getConnection();
+            PreparedStatement sqlStatement = c.prepareStatement("select * from fn_useringredients(?, ?)");
 
             sqlStatement.setString(1, username);
             sqlStatement.setString(2, languageID);
@@ -72,6 +77,7 @@ public class User
 
                 ingredients.add(new IngredientLink(ingredientID, ingredientName));
             }
+            c.close();
             return ingredients;
         }
         catch (SQLException e)
@@ -84,9 +90,12 @@ public class User
     public Collection<IngredientLink> getRecipes()
     {
         Collection<IngredientLink> recipes = new LinkedList<IngredientLink>();
+
+        Connection c;
         try
         {
-            PreparedStatement sqlStatement = DataSource.getConnection().prepareStatement("select * from fn_userrecipes(?, ?)");
+            c = DataSource.getConnection();
+            PreparedStatement sqlStatement = c.prepareStatement("select * from fn_userrecipes(?, ?)");
 
             sqlStatement.setString(1, username);
             sqlStatement.setString(2, languageID);
@@ -103,6 +112,7 @@ public class User
 
                 recipes.add(new IngredientLink(ingredientID, ingredientName));
             }
+            c.close();
             return recipes;
         }
         catch (SQLException e)
@@ -115,9 +125,12 @@ public class User
     public LinkedList<RecipeIngredient> getRecipeIngredients(Integer recipeID)
     {
         LinkedList<RecipeIngredient> ingredients = new LinkedList<RecipeIngredient>();
+
+        Connection c;
         try
         {
-            PreparedStatement sqlStatement = DataSource.getConnection().prepareStatement("select * from fn_userrecipeingredients(?, ?, ?)");
+            c = DataSource.getConnection();
+            PreparedStatement sqlStatement = c.prepareStatement("select * from fn_userrecipeingredients(?, ?, ?)");
 
             sqlStatement.setString(1, username);
             sqlStatement.setInt(2, recipeID);
@@ -144,6 +157,7 @@ public class User
 
                 ingredients.add(new RecipeIngredient(ingredientID, ingredientName, instructions, duration.getMinutes(), startTime.getMinutes(), available));
             }
+            c.close();
             return ingredients;
         }
         catch (SQLException e)

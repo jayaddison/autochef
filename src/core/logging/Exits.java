@@ -10,7 +10,8 @@ public class Exits
     {
         try
         {
-            PreparedStatement sqlStatement = DataSource.getConnection().prepareStatement("select fn_logexit(?, ?, ?, ?)");
+            Connection c = DataSource.getConnection();
+            PreparedStatement sqlStatement = c.prepareStatement("select fn_logexit(?, ?, ?, ?)");
 
             sqlStatement.setString(1, pageviewid);
             sqlStatement.setString(2, sourceid);
@@ -18,6 +19,7 @@ public class Exits
             sqlStatement.setString(4, ingredientid);
 
             sqlStatement.executeUpdate();
+            c.close();
         }
         catch (SQLException e)
         {
