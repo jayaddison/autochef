@@ -33,10 +33,10 @@
 <jsp:include page="shared/menu.jsp" />
 </td>
 <td class="content">
-<jsp:include page="<%= "shared/content/" + uri %>" />
+<jsp:include page='<%= "shared/content/" + uri %>' />
 </td>
 <td class="sidebar">
-<jsp:include page="<%= "shared/sidebar/" + uri %>" />
+<jsp:include page='<%= "shared/sidebar/" + uri %>' />
 </td>
 </tr>
 </table>
