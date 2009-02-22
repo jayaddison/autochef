@@ -22,10 +22,10 @@
 <c:if test="${empty userBean.username}"><jsp:forward page="index.jsp" /></c:if>
 </td>
 <td class="content">
-<jsp:include page="<%= "shared/content/" + uri %>" />
+<jsp:include page="<%= 'shared/content/" + uri %>' />
 </td>
 <td class="sidebar">
-<jsp:include page="<%= "shared/sidebar/" + uri %>" />
+<jsp:include page="<%= 'shared/sidebar/" + uri %>' />
 </td>
 </tr>
 </table>
