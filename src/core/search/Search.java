@@ -27,6 +27,7 @@ public class Search
             {
                 links.add(new IngredientLink(results.getInt(1), results.getString(2)));
             }
+            c.close();
             return links;
         }
         catch (SQLException e)
@@ -55,6 +56,7 @@ public class Search
             {
                 links.add(new IngredientLink(results.getInt(1), results.getString(2)));
             }
+            c.close();
             return links;
         }
         catch (SQLException e)
