@@ -107,7 +107,7 @@ begin
     update _choseningredients
     set starttime = starttime - (select max(starttime) from _choseningredients);
 
-    for ret in
+    return query
         select
             c.treenodeid,
             c.treeparentid,
@@ -121,11 +121,7 @@ begin
         join tbingredients as i on i.ingredientid = c.ingredientid
         join tbingredienttranslations as t on t.ingredientid = c.ingredientid
         where t.languageid = 'en'
-        order by c.treenodeid desc
-    loop 
-        return next ret;
-    end loop;
-    return;
+        order by c.treenodeid desc;
 end;
 $$
 language plpgsql;
