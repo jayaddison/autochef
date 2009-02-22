@@ -39,13 +39,9 @@ begin
         exit when rowcount = 0;
     end loop;
 
-    for ret in
+    return query
         select i.ingredientid
-        from _possibleingredients as i
-    loop
-        return next ret;
-    end loop;
-    return;
+        from _possibleingredients as i;
 end;
 $$
 language plpgsql;

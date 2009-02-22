@@ -8,16 +8,13 @@ $$
 declare
     ret tpingredientlink;
 begin
-    for ret in
+    return query
         select p.ingredientid, t.name as ingredientname
         from tbingredienttranslations as t
         join tbproducts as p on p.ingredientid = t.ingredientid
         where t.languageid = languageid
         and t.name ilike textcat('%', textcat(searchtext, '%'))
-        limit 9
-    loop
-        return next ret;
-    end loop;
+        limit 9;
 end
 $$
 language plpgsql;

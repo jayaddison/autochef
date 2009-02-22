@@ -11,9 +11,11 @@ public class RandomRecipes
     public static Collection<IngredientLink> getRecipes(String languageID)
     {
         Collection<IngredientLink> links = new LinkedList<IngredientLink>();
+
         try
         {
-            PreparedStatement sqlStatement = DataSource.getConnection().prepareStatement("select * from fn_randomrecipes(?)");
+            Connection c = DataSource.getConnection();
+            PreparedStatement sqlStatement = c.prepareStatement("select * from fn_randomrecipes(?)");
 
             sqlStatement.setString(1, languageID);
 
@@ -23,6 +25,7 @@ public class RandomRecipes
             {
                 links.add(new IngredientLink(results.getInt(1), results.getString(2)));
             }
+            c.close();
             return links;
         }
         catch (SQLException e)

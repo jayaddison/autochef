@@ -8,16 +8,12 @@ $$
 declare
     ret tpingredientlink;
 begin
-    for ret in
+    return query
         select t.ingredientid, t.name
         from fn_userpossibleingredients(username) as i
         join tbmeals as m on m.ingredientid = i.ingredientid
         join tbingredienttranslations as t on t.ingredientid = i.ingredientid
-        where t.languageid = 'en'
-    loop 
-        return next ret;
-    end loop;
-    return;
+        where t.languageid = 'en';
 end;
 $$
 language plpgsql;

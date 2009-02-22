@@ -11,9 +11,12 @@ public class Search
     public static Collection<IngredientLink> getRecipes(String searchText, String languageID)
     {
         Collection<IngredientLink> links = new LinkedList<IngredientLink>();
+
+        Connection c;
         try
         {
-            PreparedStatement sqlStatement = DataSource.getConnection().prepareStatement("select * from fn_searchrecipes(?, ?)");
+            c = DataSource.getConnection();
+            PreparedStatement sqlStatement = c.prepareStatement("select * from fn_searchrecipes(?, ?)");
 
             sqlStatement.setString(1, searchText);
             sqlStatement.setString(2, languageID);
@@ -36,9 +39,12 @@ public class Search
     public static Collection<IngredientLink> getIngredients(String searchText, String languageID)
     {
         Collection<IngredientLink> links = new LinkedList<IngredientLink>();
+
+        Connection c;
         try
         {
-            PreparedStatement sqlStatement = DataSource.getConnection().prepareStatement("select * from fn_searchingredients(?, ?)");
+            c = DataSource.getConnection();
+            PreparedStatement sqlStatement = c.prepareStatement("select * from fn_searchingredients(?, ?)");
 
             sqlStatement.setString(1, searchText);
             sqlStatement.setString(2, languageID);

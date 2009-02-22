@@ -10,12 +10,14 @@ public class Searches
     {
         try
         {
-            PreparedStatement sqlStatement = DataSource.getConnection().prepareStatement("select fn_logsearch(?, ?)");
+            Connection c = DataSource.getConnection();
+            PreparedStatement sqlStatement = c.prepareStatement("select fn_logsearch(?, ?)");
 
             sqlStatement.setString(1, domainid);
             sqlStatement.setString(2, searchtext);
 
             sqlStatement.executeUpdate();
+            c.close();
         }
         catch (SQLException e)
         {
