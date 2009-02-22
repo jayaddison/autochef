@@ -13,6 +13,7 @@
     <war destfile="${deploy.home}/ROOT.war" basedir="${jsp.home}" webxml="etc/web.xml">
       <lib dir="${src.home}/lib" />
       <classes dir="${build.home}" />
+      <webinf file="etc/autochef.properties" />
     </war>
   </target>
 
