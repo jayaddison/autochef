@@ -30,7 +30,7 @@ public class DataSource
         // Read application settings
         try
         {
-            pr.load(new FileInputStream("/var/lib/tomcat6/webapps/ROOT/WEB-INF/autochef.properties"));
+            pr.load(DataSource.class.getResourceAsStream("/autochef.properties"));
         }
         catch (IOException e)
         {
