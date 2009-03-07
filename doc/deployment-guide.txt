@@ -1,0 +1,19 @@
+1. Install postgresql
+2. Install tomcat
+3. Start postgresql service
+
+4. Create tomcat database user (createuser)
+5. Create autochef database (createdb)
+6. Create plpgsql language on autochef database (createlang)
+
+7. Run database schema creation script as tomcat user
+8. Run database function creation script as tomcat user
+9. Restore data / run test data insertion script
+
+10. Obtain JDBC postgresql drivers
+11. Obtain JSTL libraries
+
+12. Create application .war file (ant)
+13. Deploy .war file to tomcat webapps directory as "ROOT.war"
+
+14. Start tomcat service

@@ -4,6 +4,8 @@ import java.io.*;
 import java.sql.*;
 import java.util.*;
 
+import org.postgresql.ds.*;
+
 public class DataSource
 {
     static Properties pr = new Properties();
