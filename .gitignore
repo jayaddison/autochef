@@ -1,5 +1,5 @@
 *.swp
+*.properties
 build
 deploy
 src/lib
-etc/autochef.properties
