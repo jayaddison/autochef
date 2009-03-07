@@ -8,21 +8,15 @@ import org.postgresql.ds.*;
 
 public class DataSource
 {
-    static PGPoolingDataSource ds = new PGPoolingDataSource();
     static Properties pr = new Properties();
+
+    static String hostname;
+    static String database;
+    static String username;
+    static String password;
 
     static
     {
-        // Read application settings
-        try
-        {
-            pr.load(new FileInputStream("/var/lib/tomcat6/webapps/ROOT/WEB-INF/autochef.properties"));
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-
         // Load the database driver
         try
         {
@@ -33,16 +27,29 @@ public class DataSource
             e.printStackTrace();
         }
 
-        ds.setServerName(pr.getProperty("database.hostname"));
-        ds.setDatabaseName(pr.getProperty("database.catalog"));
-        ds.setUser(pr.getProperty("database.username"));
-        ds.setPassword(pr.getProperty("database.password"));
+        // Read application settings
+        try
+        {
+            pr.load(new FileInputStream("/var/lib/tomcat6/webapps/ROOT/WEB-INF/autochef.properties"));
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
 
-        ds.setMaxConnections(20);
+        hostname = pr.getProperty("database.hostname");
+        database = pr.getProperty("database.catalog");
+        username = pr.getProperty("database.username");
+        password = pr.getProperty("database.password");
     }
 
     public static Connection getConnection() throws SQLException
     {
-        return ds.getConnection();
+        return DriverManager.getConnection
+        (
+            "jdbc:postgresql://" + hostname + "/" + database,
+            username,
+            password
+        );
     }
 }
