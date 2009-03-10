@@ -1,9 +1,13 @@
+---
 * Database Dependencies
+---
 
 postgresql
 
 
+---
 * Database Deployment Process
+---
 
 1. Install postgresql
 

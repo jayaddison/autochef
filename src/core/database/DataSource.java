@@ -4,6 +4,8 @@ import java.io.*;
 import java.sql.*;
 import java.util.*;
 
+import org.apache.log4j.*;
+
 public class DataSource
 {
     static Properties pr = new Properties();
@@ -39,6 +41,9 @@ public class DataSource
         database = pr.getProperty("database.catalog");
         username = pr.getProperty("database.username");
         password = pr.getProperty("database.password");
+
+        Logger foo = Logger.getRootLogger();
+        foo.debug("test");
     }
 
     public static Connection getConnection() throws SQLException

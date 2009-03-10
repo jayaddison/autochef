@@ -6,8 +6,9 @@
   <property name="deploy.home" value="${basedir}/deploy" />
 
   <target name="compile">
-    <ant antfile="${src.home}/build.xml" target="compile" />
+    <copy file="etc/log4j.properties" todir="${build.home}" />
     <copy file="etc/autochef.properties" todir="${build.home}" />
+    <ant antfile="${src.home}/build.xml" target="compile" />
   </target>
 
   <target name="war">

@@ -1,4 +1,6 @@
+---
 * Web Server Dependencies
+---
 
 tomcat
 java
@@ -7,7 +9,9 @@ jdbc-postgresql / libpg-java
 log4j
 
 
+---
 * Web Server Deployment Process
+---
 
 1. Install tomcat
 
@@ -22,38 +26,50 @@ log4j
     File:       $CATALINA_HOME/conf/server.xml
     Attribute:  Connector
 
-4. Configure database access logging
+4. Add a jdbc library reference from tomcat's lib directory
+
+5. Configure access logging
     
     File:       $CATALINA_HOME/conf/server.xml
     Element:    Valve
+
     Attribute:  className
-    Value:      JDBCAccessLogValve
+    Value:      org.apache.catalina.valves.JDBCAccessLogValve
 
-5. Configure application logging
+    Attribute:  driverName
+    Value:      org.postgresql.Driver
 
-    File:       $CATALINA_HOME/conf/logging.properties
-    Property:   handlers
-    Value:      JDBCAppender
+    Attribute:  connectionURL
+    Value:      jdbc:postgresql://localhost/logstore
 
-6. Grant application permissions
+    Attribute:  tableName
+    Value:      tbaccesslog
+
+    Attribute:  pattern
+    Value:      combined
+
+6. Configure application logging
+
+    File:       $WORKING_DIR/etc/log4j.properties
+
+7. Grant application permissions
 
     File:       $CATALINA_HOME/conf/policy.d/50user.policy
     Codebase:   file:/${catalina.base}/webapps/-
+
     Permission: SocketPermission (localhost:postgres, connect)
     Permission: SocketPermission (*, resolve)
 
-6. Create a src/lib subdirectory under the working directory root
+8. Create a src/lib subdirectory under the working directory root
 
-7. Create links to shared log4j, jdbc and jakarta taglib jar files from src/lib
+9. Create links to shared log4j, jdbc and jakarta taglib jar files from src/lib
 
-8. Configure the application to point to an existing database
+10. Configure the application to point to an existing database
 
     File:       $WORKING_DIR/etc/autochef.properties
 
-9. Build the application .war file, by executing 'ant'
-
-10. Deploy the .war file to the root application location
+11. Build (ant), and deploy the .war file to the root application location
 
     File: $CATALINA_HOME/webapps/ROOT.war
 
-11. Start tomcat service
+12. Start tomcat service

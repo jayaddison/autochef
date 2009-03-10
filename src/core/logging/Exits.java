@@ -11,12 +11,11 @@ public class Exits
         try
         {
             Connection c = DataSource.getConnection();
-            PreparedStatement sqlStatement = c.prepareStatement("select fn_logexit(?, ?, ?, ?)");
+            PreparedStatement sqlStatement = c.prepareStatement("select fn_logexit(?, ?, ?)");
 
-            sqlStatement.setString(1, pageviewid);
-            sqlStatement.setString(2, sourceid);
-            sqlStatement.setString(3, supplierid);
-            sqlStatement.setString(4, ingredientid);
+            sqlStatement.setString(1, sourceid);
+            sqlStatement.setString(2, supplierid);
+            sqlStatement.setString(3, ingredientid);
 
             sqlStatement.executeUpdate();
             c.close();

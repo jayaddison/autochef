@@ -2,17 +2,6 @@
 
 <% String uri = request.getRequestURI(); %>
 
-<jsp:useBean id="pageBean" scope="request" class="autochef.www.common.PageBean" />
-<jsp:setProperty name="pageBean" property="serverName" value="${pageContext.request.serverName}" />
-<jsp:setProperty name="pageBean" property="clientAddress" value="${pageContext.request.remoteAddr}" />
-<jsp:setProperty name="pageBean" property="requestURL" value="${pageContext.request.requestURI}" />
-<jsp:setProperty name="pageBean" property="referer" value="${header['referer']}" />
-<jsp:setProperty name="pageBean" property="userAgent" value="${header['user-agent']}" />
-<jsp:setProperty name="pageBean" property="acceptLanguage" value="${header['accept-language']}" />
-<%
-    pageBean.logData();
-%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 

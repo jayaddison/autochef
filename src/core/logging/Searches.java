@@ -11,10 +11,9 @@ public class Searches
         try
         {
             Connection c = DataSource.getConnection();
-            PreparedStatement sqlStatement = c.prepareStatement("select fn_logsearch(?, ?)");
+            PreparedStatement sqlStatement = c.prepareStatement("select fn_logsearch(?)");
 
-            sqlStatement.setString(1, domainid);
-            sqlStatement.setString(2, searchtext);
+            sqlStatement.setString(1, searchtext);
 
             sqlStatement.executeUpdate();
             c.close();
