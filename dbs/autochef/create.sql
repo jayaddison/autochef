@@ -31,7 +31,7 @@ create table tbingredienttranslations
     name text not null,
     instructions text not null,
 
-    primary key (ingredientid, languageid, countryid)
+    primary key (ingredientid, languageid)
 );
 
 create table tbmeals
