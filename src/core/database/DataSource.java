@@ -41,9 +41,6 @@ public class DataSource
         database = pr.getProperty("database.catalog");
         username = pr.getProperty("database.username");
         password = pr.getProperty("database.password");
-
-        Logger foo = Logger.getRootLogger();
-        foo.debug("test");
     }
 
     public static Connection getConnection() throws SQLException
