@@ -11,7 +11,7 @@ create table tbaccesslog
     status smallint not null,
     bytes int not null,
     referer varchar(128),
-    useragent varchar(128),
+    useragent varchar(255),
 
     primary key (id)
 );
