@@ -1,4 +1,4 @@
-<project name="root" default="deploy" basedir=".">
+<project default="deploy" basedir=".">
 
   <property name="jsp.home" value="${basedir}/jsp" />
   <property name="src.home" value="${basedir}/src" />
@@ -8,13 +8,13 @@
   <target name="compile">
     <copy file="etc/log4j.properties" todir="${build.home}" />
     <copy file="etc/autochef.properties" todir="${build.home}" />
-    <ant antfile="${src.home}/build.xml" target="compile" />
+    <ant dir="${src.home}" />
   </target>
 
   <target name="war">
-    <war destfile="${deploy.home}/ROOT.war" basedir="${jsp.home}" webxml="etc/web.xml">
-      <lib dir="${src.home}/lib" />
+    <war destfile="${deploy.home}/autochef.war" basedir="${jsp.home}" webxml="etc/web.xml">
       <classes dir="${build.home}" />
+      <lib dir="${src.home}/lib" />
     </war>
   </target>
 
