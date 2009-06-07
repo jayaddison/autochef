@@ -6,8 +6,6 @@ create or replace function fn_userrecipeingredients
 )
 returns setof tprecipeingredient as
 $$
-declare
-    ret tprecipeingredient;
 begin
     create temporary table _possibleuseringredients (ingredientid int primary key);
     create temporary table _parentingredients

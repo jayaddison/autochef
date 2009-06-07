@@ -5,8 +5,6 @@ create or replace function fn_searchrecipes
 )
 returns setof tpingredientlink as
 $$
-declare
-    ret tpingredientlink;
 begin
     return query
         select m.ingredientid, t.name as ingredientname

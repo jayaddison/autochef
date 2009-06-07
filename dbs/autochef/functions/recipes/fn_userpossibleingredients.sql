@@ -5,7 +5,6 @@ create or replace function fn_userpossibleingredients
 returns setof tpingredientid as
 $$
 declare
-    ret tpingredientid;
     rowcount int;
 begin
     create temporary table _possibleingredients
