@@ -15,7 +15,7 @@
       <xsl:element name="translation">
         <xsl:attribute name="ingredientid"><xsl:value-of select="generate-id(..)" /></xsl:attribute>
         <xsl:attribute name="languageid"><xsl:value-of select="@languageid" /></xsl:attribute>
-        <xsl:element name="title"><xsl:value-of select="title/text()" /></xsl:element>
+        <xsl:element name="name"><xsl:value-of select="name/text()" /></xsl:element>
         <xsl:element name="instructions"><xsl:value-of select="instructions/text()" /></xsl:element>
       </xsl:element>
     </xsl:for-each>

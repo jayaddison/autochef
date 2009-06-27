@@ -4,7 +4,7 @@
   <recipe>
 
     <locale languageid="en">
-       <title>spaghetti bolognese</title>
+       <name>spaghetti bolognese</name>
        <instructions>lorem ipsum</instructions>
     </locale>
 
@@ -14,12 +14,12 @@
       <ingredient duration="15 minutes">
 
         <locale languageid="en">
-          <title>cooked spaghetti</title>
+          <name>cooked spaghetti</name>
           <instructions>lorem ipsum</instructions>
         </locale>
 
         <locale languageid="de">
-          <title>deutches spaghettigen</title>
+          <name>deutches spaghettigen</name>
         </locale>
 
         <dependencies>
@@ -27,7 +27,7 @@
           <!-- Spaghetti -->
           <product>
             <locale languageid="en">
-              <title>spaghetti</title>
+              <name>spaghetti</name>
             </locale>
           </product>
 
@@ -38,7 +38,7 @@
       <!-- Bolognese Sauce -->
       <product>
         <locale languageid="en">
-          <title>bolognese sauce</title>
+          <name>bolognese sauce</name>
         </locale>
       </product>
 
