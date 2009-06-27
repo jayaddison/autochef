@@ -1,0 +1,49 @@
+<recipes>
+
+  <!-- Spaghetti Bolognese -->
+  <recipe>
+
+    <locale languageid="en">
+       <title>spaghetti bolognese</title>
+       <instructions>lorem ipsum</instructions>
+    </locale>
+
+    <dependencies>
+
+      <!-- Cooked Spaghetti -->
+      <ingredient duration="15 minutes">
+
+        <locale languageid="en">
+          <title>cooked spaghetti</title>
+          <instructions>lorem ipsum</instructions>
+        </locale>
+
+        <locale languageid="de">
+          <title>deutches spaghettigen</title>
+        </locale>
+
+        <dependencies>
+
+          <!-- Spaghetti -->
+          <product>
+            <locale languageid="en">
+              <title>spaghetti</title>
+            </locale>
+          </product>
+
+        </dependencies>
+
+      </ingredient>
+
+      <!-- Bolognese Sauce -->
+      <product>
+        <locale languageid="en">
+          <title>bolognese sauce</title>
+        </locale>
+      </product>
+
+    </dependencies>
+
+  </recipe>
+
+</recipes>
