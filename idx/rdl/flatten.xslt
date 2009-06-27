@@ -5,28 +5,18 @@
 
   <xsl:template match="recipes">
     <xml>
-      <titles><xsl:call-template name="titles" /></titles>
-      <instructions><xsl:call-template name="instructions" /></instructions>
+      <translations><xsl:call-template name="translations" /></translations>
       <dependencies><xsl:call-template name="dependencies" /></dependencies>
     </xml>
   </xsl:template>
 
-  <xsl:template name="titles">
-    <xsl:for-each select="//title">
-      <xsl:element name="title">
-        <xsl:attribute name="ingredientid"><xsl:value-of select="generate-id(../..)" /></xsl:attribute>
-        <xsl:attribute name="languageid"><xsl:value-of select="../@languageid" /></xsl:attribute>
-        <xsl:value-of select="text()" />
-      </xsl:element>
-    </xsl:for-each>
-  </xsl:template>
-
-  <xsl:template name="instructions">
-    <xsl:for-each select="//instructions">
-      <xsl:element name="instructions">
-        <xsl:attribute name="ingredientid"><xsl:value-of select="generate-id(../..)" /></xsl:attribute>
-        <xsl:attribute name="languageid"><xsl:value-of select="../@languageid" /></xsl:attribute>
-        <xsl:value-of select="text()" />
+  <xsl:template name="translations">
+    <xsl:for-each select="//locale">
+      <xsl:element name="translation">
+        <xsl:attribute name="ingredientid"><xsl:value-of select="generate-id(..)" /></xsl:attribute>
+        <xsl:attribute name="languageid"><xsl:value-of select="@languageid" /></xsl:attribute>
+        <xsl:element name="title"><xsl:value-of select="title/text()" /></xsl:element>
+        <xsl:element name="instructions"><xsl:value-of select="instructions/text()" /></xsl:element>
       </xsl:element>
     </xsl:for-each>
   </xsl:template>
