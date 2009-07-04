@@ -21,7 +21,22 @@ begin
         (xpath('/translation/instructions/text()', t.xml))[1]
     from unnest(xpath('/xml/translations/translation', input)) as t;
 
-    return query select * from translations;
+    create temporary table dependencies
+    (
+        parentid varchar(12),
+        childid varchar(12)
+    );
+
+    insert into dependencies (parentid, childid)
+    select
+        (xpath('/dependency/@parentid', t.xml))[1],
+        (xpath('/dependency/@ingredientid', t.xml))[1]
+    from unnest(xpath('/xml/dependencies/dependency', input)) as t;
+
+    return query
+        select *
+        from translations as t
+        join dependencies as d on d.childid = t.ingredientid;
 end;
 $$
 language plpgsql;

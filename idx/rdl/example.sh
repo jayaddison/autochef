@@ -1,0 +1,1 @@
+psql autochef -c "select * from fn_importrecipes('`xsltproc flatten.xslt example.rdl`') as (ingredientid varchar(12), languageid char(2), name text, instructions text, parentid varchar(12), childid varchar(12))"
