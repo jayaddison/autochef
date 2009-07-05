@@ -4,7 +4,7 @@ create or replace function fn_useringredients
     languageid char(2)
 )
 returns setof tpingredientlink as
-$$
+'
 begin
     return query
         select t.ingredientid, t.name
@@ -13,5 +13,5 @@ begin
         where u.username = username
         and t.languageid = languageid;
 end;
-$$
+'
 language plpgsql;

@@ -5,7 +5,7 @@ create or replace function fn_userrecipeingredients
     languageid char(2)
 )
 returns setof tprecipeingredient as
-$$
+'
 begin
     create temporary table _possibleuseringredients (ingredientid int primary key);
     create temporary table _parentingredients
@@ -48,7 +48,7 @@ begin
 
     -- Immediate dependencies of the recipe
     insert into _requiredingredients (treeparentid, ingredientid, starttime)
-    select 0, i.ingredientid, '0'::interval
+    select 0, i.ingredientid, ''0''::interval
     from tbingredients as i
     where i.ingredientid = recipeid;
 
@@ -118,8 +118,8 @@ begin
         from _choseningredients as c
         join tbingredients as i on i.ingredientid = c.ingredientid
         join tbingredienttranslations as t on t.ingredientid = c.ingredientid
-        where t.languageid = 'en'
+        where t.languageid = ''en''
         order by c.treenodeid desc;
 end;
-$$
+'
 language plpgsql;

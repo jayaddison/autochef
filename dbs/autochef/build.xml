@@ -1,0 +1,71 @@
+<project default="createtest">
+
+  <property file="../../etc/autochef.properties" />
+
+  <path id="compile.classpath">
+    <fileset dir="../../src/lib" />
+  </path>
+
+  <target name="clean">
+    <sql
+        driver="org.postgresql.Driver"
+        classpathref="compile.classpath"
+        url="jdbc:postgresql://${database.hostname}/postgres"
+        userid="${database.username}"
+        password="${database.password}"
+        autocommit="true"
+    >
+    drop database if exists autochef;
+    </sql>
+  </target>
+
+  <target name="createdb" depends="clean">
+    <sql
+        driver="org.postgresql.Driver"
+        classpathref="compile.classpath"
+        url="jdbc:postgresql://${database.hostname}/postgres"
+        userid="${database.username}"
+        password="${database.password}"
+        autocommit="true"
+    >
+    create database autochef;
+    </sql>
+    <sql
+        driver="org.postgresql.Driver"
+        classpathref="compile.classpath"
+        url="jdbc:postgresql://${database.hostname}/${database.catalog}"
+        userid="${database.username}"
+        password="${database.password}"
+        src="create.sql"
+    />
+    <sql
+        driver="org.postgresql.Driver"
+        classpathref="compile.classpath"
+        url="jdbc:postgresql://${database.hostname}/${database.catalog}"
+        userid="${database.username}"
+        password="${database.password}"
+        delimiter="$"
+    >
+      <path>
+        <fileset dir="functions">
+          <include name="**/*.sql" />
+        </fileset>
+      </path>
+    </sql>
+  </target>
+
+  <target name="testdata">
+    <sql
+        driver="org.postgresql.Driver"
+        classpathref="compile.classpath"
+        url="jdbc:postgresql://${database.hostname}/${database.catalog}"
+        userid="${database.username}"
+        password="${database.password}"
+        src="test.sql"
+    />
+  </target>
+
+  <target name="createtest" depends="createdb,testdata">
+  </target>
+
+</project>

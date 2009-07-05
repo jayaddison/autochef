@@ -3,7 +3,7 @@ create or replace function fn_userpossibleingredients
     username text
 )
 returns setof tpingredientid as
-$$
+'
 declare rowcount int;
 begin
     create temporary table _possibleingredients
@@ -41,5 +41,5 @@ begin
         select i.ingredientid
         from _possibleingredients as i;
 end;
-$$
+'
 language plpgsql;
