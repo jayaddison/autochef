@@ -1,3 +1,5 @@
+create language plpgsql;
+
 create table tbaccesslog
 (
     id serial,
