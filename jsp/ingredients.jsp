@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="styles/default.css" />
 </head>
 
+<jsp:include page="shared/ga.jsp" />
 <body>
 <input style="visibility: hidden; height: 0px;" type="submit" />
 <div class="header">
