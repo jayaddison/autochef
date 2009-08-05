@@ -157,3 +157,8 @@ table.popular th
     width: 32px;
     border-top: solid 1px silver;
 }
+
+#partners img
+{
+    border: solid 1px lightgrey;
+}

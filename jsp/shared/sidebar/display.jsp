@@ -16,8 +16,19 @@
 </table>
 <br />
 
-<strong>Nutritional Information</strong>
+<c:if test="${not empty recipeBean.unavailableIngredients}">
+<div id="partners">
+<strong>Ingredients Online</strong>
+<br />
+<br />
+<a href="http://clkuk.tradedoubler.com/click?p(898)a(1696145)g(14074016)"><img src="images/websites/tesco.png"></img></a>
+<a href="http://clkuk.tradedoubler.com/click?p(20687)a(1696145)g(841508)"><img src="images/websites/waitrose.png"></img></a>
+<br />
+</div>
+</c:if>
+
 <div id="nutritioninfo" style="visibility: hidden">
+<strong>Nutritional Information</strong>
 <table>
 <tr><td>Calories</td><td>80</td></tr>
 <tr><td>Protein</td><td>5.1g</td></tr>

@@ -20,10 +20,6 @@
 </ul>
 <div><strong>Servings: 2</strong></div>
 <div><strong>Preparation Time: ${recipeBean.preparationTime} minutes</strong></div>
-<c:if test="${not empty recipeBean.unavailableIngredients}">
-<br />
-<a href="">add missing ingredients to shopping list</a>
-</c:if>
 </td>
 </tr>
 <c:forEach var="recipe" items="${recipeBean.recipeSteps}" varStatus="status">
