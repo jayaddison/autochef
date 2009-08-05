@@ -5,6 +5,18 @@ create or replace function fn_importrecipes
 returns setof record as
 '
 begin
+    create temporary table ingredients
+    (
+        ingredientid varchar(12),
+        duration interval
+    );
+
+    insert into ingredients (ingredientid, duration)
+    select
+        (xpath(''/ingredient/@ingredientid'', t.xml))[1],
+        coalesce(nullif((xpath(''/ingredient/@duration'', t.xml))[1]::text, ''''), ''0'')::interval
+    from unnest(xpath(''/xml/ingredients/ingredient'', input)) as t;
+
     create temporary table translations
     (
         ingredientid varchar(12),
@@ -35,8 +47,9 @@ begin
 
     return query
         select *
-        from translations as t
-        join dependencies as d on d.childid = t.ingredientid;
+        from ingredients as i
+        join dependencies as d on d.childid = i.ingredientid
+        join translations as t on t.ingredientid = i.ingredientid;
 end;
 '
 language plpgsql;

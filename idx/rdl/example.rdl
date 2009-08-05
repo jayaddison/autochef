@@ -1,7 +1,7 @@
 <recipes>
 
   <!-- Spaghetti Bolognese -->
-  <recipe>
+  <recipe duration="10 minutes">
 
     <locale languageid="en">
        <name>spaghetti bolognese</name>
