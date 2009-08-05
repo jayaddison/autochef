@@ -1,4 +1,4 @@
 database.hostname=localhost
 database.catalog=logstore
-database.username=tomcat55
+database.username=tomcat
 #database.password=
