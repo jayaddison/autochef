@@ -1,4 +1,5 @@
 <jsp:useBean id="recipeBean" scope="request" class="autochef.www.content.RecipeBean" />
+<jsp:useBean id="linkBean" scope="request" class="autochef.www.link.LinkBean" />
 
 <strong>Preparation Timeline</strong>
 <br />
@@ -21,8 +22,12 @@
 <strong>Ingredients Online</strong>
 <br />
 <br />
-<a href="http://clkuk.tradedoubler.com/click?p(898)a(1696145)g(14074016)"><img src="images/websites/tesco.png"></img></a>
-<a href="http://clkuk.tradedoubler.com/click?p(20687)a(1696145)g(841508)"><img src="images/websites/waitrose.png"></img></a>
+<jsp:setProperty name="linkBean" property="linkType" value="ingredient" />
+<a href="${linkBean.link}"><img src="images/websites/tesco.png"></img></a>
+<!--
+<jsp:setProperty name="linkBean" property="linkType" value="ingredient" />
+<a href="${linkBean.link}"><img src="images/websites/waitrose.png"></img></a>
+-->
 <br />
 </div>
 </c:if>

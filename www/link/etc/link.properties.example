@@ -2,5 +2,3 @@ database.hostname=localhost
 database.catalog=autochef
 database.username=tomcat
 #database.password=
-
-link.uri=http://localhost/link
