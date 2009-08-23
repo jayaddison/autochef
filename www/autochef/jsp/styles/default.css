@@ -1,0 +1,164 @@
+/* Global Presentation */
+body,table
+{
+    font-size: 11px;
+    font-family: arial;
+}
+
+table
+{
+    width: 100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-top: solid 2px black;
+    border-bottom: solid 2px black;
+}
+
+input
+{
+    vertical-align: middle;
+
+    margin-top: 1px;
+
+    border: solid 1px silver;
+}
+
+img
+{
+    border: none;
+}
+
+td
+{
+    vertical-align: top;
+
+    padding-left: 1.0em;
+    padding-right: 1.0em;
+}
+
+a
+{
+    color: maroon;
+    text-decoration: none;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+
+/* Header Presentation */
+div.header
+{
+    margin: 4px;
+    padding: 4px;
+}
+
+div.header div.logo
+{
+    float: left;
+
+    font-size: 18px;
+}
+
+div.header div.search
+{
+    float: right;
+}
+
+div.header div.slogan
+{
+    clear: both;
+
+    color: dimgray;
+    font-style: italic;
+}
+
+/* Menu Presentation */
+td.menu
+{
+    white-space: nowrap;
+
+    border-right: solid 1px maroon;
+}
+
+/* Content Presentation */
+td.content
+{
+    width: 100%;
+}
+
+td.content table
+{
+    padding: 0;
+
+    border: none;
+}
+
+td.content td
+{
+    padding: 8px;
+    border-top: solid 1px silver;
+}
+
+/* Recipe Presentation */
+ul
+{
+    padding-left: 12px;
+
+    list-style-type: square;
+}
+
+li.available
+{
+    color: green;
+}
+
+li.unavailable
+{
+    color: red;
+}
+
+li div
+{
+    color: black;
+}
+
+/* Sidebar Presentation */
+td.sidebar
+{
+    width: 260px;
+    white-space: nowrap;
+    border-left: solid 1px maroon;
+}
+
+td.sidebar table
+{
+    padding: 0;
+
+    border: none;
+}
+
+td.sidebar th
+{
+    border: solid 1px silver;
+}
+
+#timelinechart div
+{
+    float: left;
+
+    width: 8px;
+    margin-left: 4px;
+}
+
+table.popular th
+{
+    width: 32px;
+    border-top: solid 1px silver;
+}
+
+#partners img
+{
+    border: solid 1px lightgrey;
+}

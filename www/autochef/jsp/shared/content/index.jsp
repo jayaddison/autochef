@@ -1,0 +1,3 @@
+<h3>Welcome!</h3>
+<p><a href="."><em style="color: black;">auto</em><strong style="color: maroon;">chef</strong></a> is an exciting new way to find and explore recipes online - whether you're looking for tips on how to prepare the perfect meal, or curious to see all the possibilities provided by the ingredients in your kitchen, we're here to help.</p>
+<p>Simply list all the ingredients you have readily available, and our system will pick out all of the possible meals you can prepare - you can even specify which types of food you would prefer, and list any dietary requirements, and we will automatically provide you with appropriate results.</p>
