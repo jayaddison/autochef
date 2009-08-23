@@ -44,6 +44,14 @@
         url="jdbc:postgresql://${database.hostname}/${database.catalog}"
         userid="${database.username}"
         password="${database.password}"
+        src="scripts/data/base-ingredients.sql"
+    />
+    <sql
+        driver="org.postgresql.Driver"
+        classpathref="compile.classpath"
+        url="jdbc:postgresql://${database.hostname}/${database.catalog}"
+        userid="${database.username}"
+        password="${database.password}"
         delimiter="$"
     >
       <path>

@@ -42,15 +42,68 @@ insert into tbmeals (ingredientid) values (currval('tbingredients_ingredientid_s
 insert into tbingredienttranslations (ingredientid, languageid, name, instructions) values (currval('tbingredients_ingredientid_seq'), 'en', 'Beef Burritos', '');
 
 -- Ingredient dependencies
-insert into tbingredientdependencies (parentid, childid) values (10, 6);
-insert into tbingredientdependencies (parentid, childid) values (9, 8);
-insert into tbingredientdependencies (parentid, childid) values (9, 7);
-insert into tbingredientdependencies (parentid, childid) values (8, 5);
-insert into tbingredientdependencies (parentid, childid) values (7, 6);
-insert into tbingredientdependencies (parentid, childid) values (7, 2);
-insert into tbingredientdependencies (parentid, childid) values (6, 4);
-insert into tbingredientdependencies (parentid, childid) values (4, 3);
-insert into tbingredientdependencies (parentid, childid) values (2, 1);
+insert into tbingredientdependencies (parentid, childid)
+select p.ingredientid, c.ingredientid
+from tbingredienttranslations as p
+cross join tbingredienttranslations as c
+where p.languageid = 'en'
+and c.languageid = 'en'
+and p.name = 'Beef Burritos'
+and c.name in ('Browned Beef Mince');
+
+insert into tbingredientdependencies (parentid, childid)
+select p.ingredientid, c.ingredientid
+from tbingredienttranslations as p
+cross join tbingredienttranslations as c
+where p.languageid = 'en'
+and c.languageid = 'en'
+and p.name = 'Spaghetti Bolognese'
+and c.name in ('Cooked Spaghetti', 'Bolognese Sauce');
+
+insert into tbingredientdependencies (parentid, childid)
+select p.ingredientid, c.ingredientid
+from tbingredienttranslations as p
+cross join tbingredienttranslations as c
+where p.languageid = 'en'
+and c.languageid = 'en'
+and p.name = 'Cooked Spaghetti'
+and c.name in ('Spaghetti');
+
+insert into tbingredientdependencies (parentid, childid)
+select p.ingredientid, c.ingredientid
+from tbingredienttranslations as p
+cross join tbingredienttranslations as c
+where p.languageid = 'en'
+and c.languageid = 'en'
+and p.name = 'Bolognese Sauce'
+and c.name in ('Browned Beef Mince', 'Tomato Sauce');
+
+insert into tbingredientdependencies (parentid, childid)
+select p.ingredientid, c.ingredientid
+from tbingredienttranslations as p
+cross join tbingredienttranslations as c
+where p.languageid = 'en'
+and c.languageid = 'en'
+and p.name = 'Browned Beef Mince'
+and c.name in ('Minced Beef');
+
+insert into tbingredientdependencies (parentid, childid)
+select p.ingredientid, c.ingredientid
+from tbingredienttranslations as p
+cross join tbingredienttranslations as c
+where p.languageid = 'en'
+and c.languageid = 'en'
+and p.name = 'Minced Beef'
+and c.name in ('Beef');
+
+insert into tbingredientdependencies (parentid, childid)
+select p.ingredientid, c.ingredientid
+from tbingredienttranslations as p
+cross join tbingredienttranslations as c
+where p.languageid = 'en'
+and c.languageid = 'en'
+and p.name = 'Tomato Sauce'
+and c.name in ('Tomatoes');
 
 -- Users
 insert into tbusers (username, password)
