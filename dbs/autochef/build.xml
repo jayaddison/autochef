@@ -1,9 +1,9 @@
 <project default="createtest">
 
-  <property file="../../etc/autochef.properties" />
+  <property file="../../www/autochef/etc/autochef.properties" />
 
   <path id="compile.classpath">
-    <fileset dir="../../src/lib" />
+    <fileset dir="../../www/autochef/src/lib" />
   </path>
 
   <target name="clean">
@@ -19,7 +19,7 @@
     </sql>
   </target>
 
-  <target name="createdb" depends="clean">
+  <target name="create" depends="clean">
     <sql
         driver="org.postgresql.Driver"
         classpathref="compile.classpath"
@@ -36,7 +36,7 @@
         url="jdbc:postgresql://${database.hostname}/${database.catalog}"
         userid="${database.username}"
         password="${database.password}"
-        src="create.sql"
+        src="scripts/create.sql"
     />
     <sql
         driver="org.postgresql.Driver"
@@ -54,18 +54,18 @@
     </sql>
   </target>
 
-  <target name="testdata">
+  <target name="test">
     <sql
         driver="org.postgresql.Driver"
         classpathref="compile.classpath"
         url="jdbc:postgresql://${database.hostname}/${database.catalog}"
         userid="${database.username}"
         password="${database.password}"
-        src="test.sql"
+        src="scripts/test/test.sql"
     />
   </target>
 
-  <target name="createtest" depends="createdb,testdata">
+  <target name="createtest" depends="create,test">
   </target>
 
 </project>

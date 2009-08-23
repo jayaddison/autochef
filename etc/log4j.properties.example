@@ -1,6 +1,0 @@
-log4j.rootLogger=DEBUG, jdbc
-log4j.appender.jdbc=org.apache.log4j.jdbc.JDBCAppender
-log4j.appender.jdbc.layout=org.apache.log4j.PatternLayout
-log4j.appender.jdbc.driver=org.postgresql.Driver
-log4j.appender.jdbc.URL=jdbc:postgresql://localhost/logstore/?user=tomcat
-log4j.appender.jdbc.sql=insert into tbeventlog (priority, category, message) values ('%p', '%c', '%m')

@@ -1,4 +1,0 @@
-database.hostname=localhost
-database.catalog=logstore
-database.username=tomcat
-#database.password=

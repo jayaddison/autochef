@@ -1,9 +1,9 @@
 <project default="createdb">
 
-  <property file="../../etc/logstore.properties" />
+  <property file="../../www/autochef/etc/logstore.properties" />
 
   <path id="compile.classpath">
-    <fileset dir="../../src/lib" />
+    <fileset dir="../../www/autochef/src/lib" />
   </path>
 
   <target name="clean">
@@ -36,7 +36,7 @@
         url="jdbc:postgresql://${database.hostname}/${database.catalog}"
         userid="${database.username}"
         password="${database.password}"
-        src="create.sql"
+        src="scripts/create.sql"
     />
     <sql
         driver="org.postgresql.Driver"
