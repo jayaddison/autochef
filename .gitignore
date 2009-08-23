@@ -1,5 +1,5 @@
+*.jar
+*.war
 *.swp
+*.class
 *.properties
-build
-deploy
-src/lib
