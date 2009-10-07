@@ -59,9 +59,13 @@
         classpathref="compile.classpath"
         url="jdbc:postgresql://${database.hostname}/${database.catalog}"
         userid="${database.username}"
-        password="${database.password}"
-        src="scripts/data/base-recipes.sql"
-    />
+        password="${database.password}">
+      <path>
+        <fileset dir="scripts/data/base-recipes">
+          <include name="*.sql" />
+        </fileset>
+      </path>
+    </sql>
     <sql
         driver="org.postgresql.Driver"
         classpathref="compile.classpath"

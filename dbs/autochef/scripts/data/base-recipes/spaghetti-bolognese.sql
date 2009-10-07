@@ -1,4 +1,9 @@
--- Missing Ingredients
+-- Recipe
+insert into tbingredients (duration) values ('0'::interval);
+insert into tbmeals (ingredientid) values (currval('tbingredients_ingredientid_seq'));
+insert into tbingredienttranslations (ingredientid, languageid, name, instructions) values (currval('tbingredients_ingredientid_seq'), 'en', 'Spaghetti Bolognese', '');
+
+-- Required Ingredients
 insert into tbingredients (duration) values ('0'::interval);
 insert into tbproducts (ingredientid, supplierid) values (currval('tbingredients_ingredientid_seq'), '');
 insert into tbingredienttranslations (ingredientid, languageid, name, instructions) values (currval('tbingredients_ingredientid_seq'), 'en', 'Tomatoes', '');
@@ -19,7 +24,7 @@ insert into tbingredients (duration) values ('0'::interval);
 insert into tbproducts (ingredientid, supplierid) values (currval('tbingredients_ingredientid_seq'), '');
 insert into tbingredienttranslations (ingredientid, languageid, name, instructions) values (currval('tbingredients_ingredientid_seq'), 'en', 'Spaghetti', '');
 
--- Intermediate Ingredients
+-- Intermediate Steps
 insert into tbingredients (duration) values ('5 minutes'::interval);
 insert into tbingredienttranslations (ingredientid, languageid, name, instructions) values (currval('tbingredients_ingredientid_seq'), 'en', 'Browned Beef Mince', '');
 
@@ -29,25 +34,7 @@ insert into tbingredienttranslations (ingredientid, languageid, name, instructio
 insert into tbingredients (duration) values ('10 minutes'::interval);
 insert into tbingredienttranslations (ingredientid, languageid, name, instructions) values (currval('tbingredients_ingredientid_seq'), 'en', 'Cooked Spaghetti', '');
 
--- Recipes
-insert into tbingredients (duration) values ('0'::interval);
-insert into tbmeals (ingredientid) values (currval('tbingredients_ingredientid_seq'));
-insert into tbingredienttranslations (ingredientid, languageid, name, instructions) values (currval('tbingredients_ingredientid_seq'), 'en', 'Spaghetti Bolognese', '');
-
-insert into tbingredients (duration) values ('0'::interval);
-insert into tbmeals (ingredientid) values (currval('tbingredients_ingredientid_seq'));
-insert into tbingredienttranslations (ingredientid, languageid, name, instructions) values (currval('tbingredients_ingredientid_seq'), 'en', 'Beef Burritos', '');
-
--- Ingredient Dependencies
-insert into tbingredientdependencies (parentid, childid)
-select p.ingredientid, c.ingredientid
-from tbingredienttranslations as p
-cross join tbingredienttranslations as c
-where p.languageid = 'en'
-and c.languageid = 'en'
-and p.name = 'Beef Burritos'
-and c.name in ('Browned Beef Mince');
-
+-- Dependencies
 insert into tbingredientdependencies (parentid, childid)
 select p.ingredientid, c.ingredientid
 from tbingredienttranslations as p
