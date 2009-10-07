@@ -1,7 +1,4 @@
--- Suppliers
-insert into tbsuppliers (supplierid) values ('');
-
--- Products
+-- Missing Ingredients
 insert into tbingredients (duration) values ('0'::interval);
 insert into tbproducts (ingredientid, supplierid) values (currval('tbingredients_ingredientid_seq'), '');
 insert into tbingredienttranslations (ingredientid, languageid, name, instructions) values (currval('tbingredients_ingredientid_seq'), 'en', 'Tomatoes', '');
@@ -22,7 +19,7 @@ insert into tbingredients (duration) values ('0'::interval);
 insert into tbproducts (ingredientid, supplierid) values (currval('tbingredients_ingredientid_seq'), '');
 insert into tbingredienttranslations (ingredientid, languageid, name, instructions) values (currval('tbingredients_ingredientid_seq'), 'en', 'Spaghetti', '');
 
--- Ingredients
+-- Intermediate Ingredients
 insert into tbingredients (duration) values ('5 minutes'::interval);
 insert into tbingredienttranslations (ingredientid, languageid, name, instructions) values (currval('tbingredients_ingredientid_seq'), 'en', 'Browned Beef Mince', '');
 
@@ -32,7 +29,7 @@ insert into tbingredienttranslations (ingredientid, languageid, name, instructio
 insert into tbingredients (duration) values ('10 minutes'::interval);
 insert into tbingredienttranslations (ingredientid, languageid, name, instructions) values (currval('tbingredients_ingredientid_seq'), 'en', 'Cooked Spaghetti', '');
 
--- Meals
+-- Recipes
 insert into tbingredients (duration) values ('0'::interval);
 insert into tbmeals (ingredientid) values (currval('tbingredients_ingredientid_seq'));
 insert into tbingredienttranslations (ingredientid, languageid, name, instructions) values (currval('tbingredients_ingredientid_seq'), 'en', 'Spaghetti Bolognese', '');
@@ -41,7 +38,7 @@ insert into tbingredients (duration) values ('0'::interval);
 insert into tbmeals (ingredientid) values (currval('tbingredients_ingredientid_seq'));
 insert into tbingredienttranslations (ingredientid, languageid, name, instructions) values (currval('tbingredients_ingredientid_seq'), 'en', 'Beef Burritos', '');
 
--- Ingredient dependencies
+-- Ingredient Dependencies
 insert into tbingredientdependencies (parentid, childid)
 select p.ingredientid, c.ingredientid
 from tbingredienttranslations as p
@@ -104,11 +101,3 @@ where p.languageid = 'en'
 and c.languageid = 'en'
 and p.name = 'Tomato Sauce'
 and c.name in ('Tomatoes');
-
--- Users
-insert into tbusers (username, password)
-select 'test', md5('test');
-
--- User ingredients
-insert into tbuseringredients (username, ingredientid) values ('test', 3);
-insert into tbuseringredients (username, ingredientid) values ('test', 5);

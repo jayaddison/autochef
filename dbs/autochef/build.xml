@@ -1,4 +1,4 @@
-<project default="createtest">
+<project default="create">
 
   <property file="../../www/autochef/etc/autochef.properties" />
 
@@ -44,7 +44,23 @@
         url="jdbc:postgresql://${database.hostname}/${database.catalog}"
         userid="${database.username}"
         password="${database.password}"
+        src="scripts/data/base-environment.sql"
+    />
+    <sql
+        driver="org.postgresql.Driver"
+        classpathref="compile.classpath"
+        url="jdbc:postgresql://${database.hostname}/${database.catalog}"
+        userid="${database.username}"
+        password="${database.password}"
         src="scripts/data/base-ingredients.sql"
+    />
+    <sql
+        driver="org.postgresql.Driver"
+        classpathref="compile.classpath"
+        url="jdbc:postgresql://${database.hostname}/${database.catalog}"
+        userid="${database.username}"
+        password="${database.password}"
+        src="scripts/data/base-recipes.sql"
     />
     <sql
         driver="org.postgresql.Driver"
@@ -60,20 +76,6 @@
         </fileset>
       </path>
     </sql>
-  </target>
-
-  <target name="test">
-    <sql
-        driver="org.postgresql.Driver"
-        classpathref="compile.classpath"
-        url="jdbc:postgresql://${database.hostname}/${database.catalog}"
-        userid="${database.username}"
-        password="${database.password}"
-        src="scripts/test/test.sql"
-    />
-  </target>
-
-  <target name="createtest" depends="create,test">
   </target>
 
 </project>
