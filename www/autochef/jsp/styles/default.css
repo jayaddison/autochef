@@ -1,13 +1,12 @@
 /* Global Presentation */
 body,table
 {
-    font-size: 11px;
+    font-size: medium;
     font-family: arial;
 }
 
 table
 {
-    width: 100%;
     padding-top: 8px;
     padding-bottom: 8px;
     border-top: solid 2px black;
@@ -48,25 +47,27 @@ a:hover
 }
 
 /* Header Presentation */
-div.header
+#header
 {
+    width: 800px;
+
     margin: 4px;
     padding: 4px;
 }
 
-div.header div.logo
+#header div.logo
 {
     float: left;
 
     font-size: 18px;
 }
 
-div.header div.search
+#header div.search
 {
     float: right;
 }
 
-div.header div.slogan
+#header div.slogan
 {
     clear: both;
 
@@ -75,27 +76,28 @@ div.header div.slogan
 }
 
 /* Menu Presentation */
-td.menu
+#menu
 {
+    width: 140px;
     white-space: nowrap;
 
     border-right: solid 1px maroon;
 }
 
 /* Content Presentation */
-td.content
+#content
 {
-    width: 100%;
+    width: 400px;
 }
 
-td.content table
+#content table
 {
     padding: 0;
 
     border: none;
 }
 
-td.content td
+#content td
 {
     padding: 8px;
     border-top: solid 1px silver;
@@ -125,21 +127,21 @@ li div
 }
 
 /* Sidebar Presentation */
-td.sidebar
+#sidebar
 {
     width: 260px;
     white-space: nowrap;
     border-left: solid 1px maroon;
 }
 
-td.sidebar table
+#sidebar table
 {
     padding: 0;
 
     border: none;
 }
 
-td.sidebar th
+#sidebar th
 {
     border: solid 1px silver;
 }

@@ -14,11 +14,9 @@
 </c:when>
 <c:otherwise>
 <div><strong>your kitchen</strong></div>
-<div><a href="private.jsp">personal recipes</a></div>
-<div><a href="ingredients.jsp">available ingredients</a></div>
-<div><a href="recipes.jsp">autochef's menu</a></div>
-<br />
-<div><a href="preferences.jsp">preferences</a></div>
+<div><a href="ingredients.jsp">ingredients</a></div>
+<div><a href="suggestions.jsp">recipe suggestions</a></div>
+<div><a href="settings.jsp">settings</a></div>
 <div><a href="<%= "?logout=1" + (request.getQueryString() == null ? "" : "&" + request.getQueryString()) %>">logout</a></div>
 </c:otherwise>
 </c:choose>

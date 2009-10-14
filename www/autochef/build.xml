@@ -10,9 +10,9 @@
   </path>
 
   <target name="compile">
+    <mkdir dir="${build.home}" />
     <copy file="etc/log4j.properties" todir="${build.home}" />
     <copy file="etc/autochef.properties" todir="${build.home}" />
-    <mkdir dir="${build.home}" />
     <javac srcdir="${src.home}" destdir="${build.home}" classpathref="compile.classpath" />
   </target>
 
