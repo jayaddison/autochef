@@ -60,6 +60,7 @@ ant
 
     Permission: SocketPermission (localhost:postgres, connect)
     Permission: SocketPermission (*, resolve)
+    Permission: PropertyPermission (BodyContentImpl.LIMIT_BUFFER, read)
 
 8. Create a src/lib subdirectory under the working directory root
 
