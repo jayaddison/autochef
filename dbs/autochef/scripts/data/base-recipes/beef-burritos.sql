@@ -13,8 +13,6 @@ insert into tbproducts (ingredientid, supplierid) values (currval('tbingredients
 insert into tbingredienttranslations (ingredientid, languageid, name, instructions) values (currval('tbingredients_ingredientid_seq'), 'en', 'Minced Beef', '');
 
 -- Intermediate Steps
-insert into tbingredients (duration) values ('5 minutes'::interval);
-insert into tbingredienttranslations (ingredientid, languageid, name, instructions) values (currval('tbingredients_ingredientid_seq'), 'en', 'Browned Beef Mince', '');
 
 -- Dependencies
 insert into tbingredientdependencies (parentid, childid)
