@@ -63,7 +63,19 @@ ant
 
 8. Create a src/lib subdirectory under the working directory root
 
-9. Create links to shared log4j, jdbc and jakarta taglib jar files from src/lib
+9. Ensure src/lib directory contains jar files for:
+
+    commons-beanutils
+    commons-digester
+    commons-logging
+    commons-logging-api
+    jstl
+    log4j
+    postgresql-jdbc
+    tiles-api
+    tiles-core
+    tiles-jsp
+    tiles-servlet
 
 10. Configure the application to point to an existing database
 
