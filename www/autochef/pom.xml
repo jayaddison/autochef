@@ -18,18 +18,13 @@
                         <artifactId>junit</artifactId>
                         <version>3.8.1</version>
                         <scope>test</scope>
-                </dependency> 
+                </dependency>
 
 		<!-- Struts 2 -->
 		<dependency>
 			<groupId>org.apache.struts</groupId>
-			<artifactId>struts2-core</artifactId>
-			<version>2.0.11.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-tiles-plugin</artifactId>
-			<version>2.1.6</version>
+			<version>2.1.8</version>
 		</dependency>
 
 		<!-- Servlet & Jsp -->
@@ -45,20 +40,23 @@
 			<version>2.0</version>
 			<scope>provided</scope>
 		</dependency>
-
-		<!-- Jakarta Commons -->
 		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.1</version>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
 		</dependency>
 
 		<!-- PostgreSQL JDBC -->
 		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>8.3-603.jdbc4</version>
-		</dependency> 
+			<version>8.4-701.jdbc4</version>
+		</dependency>
 
 		<!-- Log4j -->
 		<dependency>
