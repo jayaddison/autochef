@@ -1,19 +1,16 @@
 <project default="create">
 
-  <property file="../../www/autochef/etc/autochef.properties" />
-
-  <path id="compile.classpath">
-    <fileset dir="../../www/autochef/src/lib" />
-  </path>
+  <property file="../../www/autochef/src/main/resources/autochef.properties" />
+  <property name="jdbc.classpath" value="/usr/share/java/postgresql.jar" />
 
   <target name="clean">
     <sql
         driver="org.postgresql.Driver"
-        classpathref="compile.classpath"
+        classpath="${jdbc.classpath}"
         url="jdbc:postgresql://${database.hostname}/postgres"
         userid="${database.username}"
         password="${database.password}"
-        autocommit="true"
+	autocommit="true"
     >
     drop database if exists autochef;
     </sql>
@@ -22,17 +19,17 @@
   <target name="create" depends="clean">
     <sql
         driver="org.postgresql.Driver"
-        classpathref="compile.classpath"
+        classpath="${jdbc.classpath}"
         url="jdbc:postgresql://${database.hostname}/postgres"
         userid="${database.username}"
         password="${database.password}"
-        autocommit="true"
+	autocommit="true"
     >
     create database autochef;
     </sql>
     <sql
         driver="org.postgresql.Driver"
-        classpathref="compile.classpath"
+        classpath="${jdbc.classpath}"
         url="jdbc:postgresql://${database.hostname}/${database.catalog}"
         userid="${database.username}"
         password="${database.password}"
@@ -40,7 +37,7 @@
     />
     <sql
         driver="org.postgresql.Driver"
-        classpathref="compile.classpath"
+        classpath="${jdbc.classpath}"
         url="jdbc:postgresql://${database.hostname}/${database.catalog}"
         userid="${database.username}"
         password="${database.password}"
@@ -48,7 +45,7 @@
     />
     <sql
         driver="org.postgresql.Driver"
-        classpathref="compile.classpath"
+        classpath="${jdbc.classpath}"
         url="jdbc:postgresql://${database.hostname}/${database.catalog}"
         userid="${database.username}"
         password="${database.password}"
@@ -56,7 +53,7 @@
     />
     <sql
         driver="org.postgresql.Driver"
-        classpathref="compile.classpath"
+        classpath="${jdbc.classpath}"
         url="jdbc:postgresql://${database.hostname}/${database.catalog}"
         userid="${database.username}"
         password="${database.password}">
@@ -68,7 +65,7 @@
     </sql>
     <sql
         driver="org.postgresql.Driver"
-        classpathref="compile.classpath"
+        classpath="${jdbc.classpath}"
         url="jdbc:postgresql://${database.hostname}/${database.catalog}"
         userid="${database.username}"
         password="${database.password}"
