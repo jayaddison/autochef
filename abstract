@@ -1,0 +1,64 @@
+autochef: goals & requirements
+===
+
+
+recipe suggestions (100%)
+---
+1. user ingredients persisted
+2. ingredient dependencies persisted
+
+
+health recommendations (80%)
+---
+1. user preferences available
+2. nutritional information available
+
+
+quantity optimization (80%)
+---
+1. user quantity information logged
+2. ingredient quantities defined
+
+
+viral marketing (70%)
+---
+1. social network integration
+
+
+revenue (90%)
+---
+1. ingredient/supermarket commissions
+2. on-site advertising
+
+
+
+autochef: components
+===
+
+
+possibility generation (prolog, database)
+---
+inputs: available ingredients & quantities, recipe/ingredient database, preferences
+processing: possible and best matches between query and potential set
+outputs: recommendations for recipes & additional ingredients
+
+
+recipe display (java, database)
+---
+inputs: recipe, ingredient database, user locale
+processing: create ordering over recipe steps, translate
+output: translated, ordered recipe description in steps
+
+
+recipe submission (javascript, java)
+---
+inputs: recipe steps, step ingredients, step durations
+processing: ingredient fuzzy matching
+output: recipe for moderation & addition to system
+
+
+ingredient deeplinking (java, database)
+---
+inputs: ingredient list, supplier
+processing: supplier ingredient fuzzy matching
+output: deeplink to supplier with tracking
