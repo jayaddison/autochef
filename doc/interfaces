@@ -1,0 +1,35 @@
+user recipe options
+---
+call api for possibilities
+
+ - input
+   * user ingredients
+   * user preferences
+
+ - output
+   * recipes
+   * recipe durations
+   * recipe nutrition
+   * recipe ingredient usage efficiency
+
+user recipe display
+---
+all api for instructions
+
+ - input
+   * user ingredients
+   * user recipe
+   * user servings
+
+ - output
+   * prerequisite ingredients
+   * prerequisite ingredient status (available / buy)
+   * prerequisite ingredient quantities
+
+   * recipe steps
+   * recipe step start times
+   * recipe step durations
+   * recipe step dependencies (opt.)
+
+   * summary nutrition
+   * summray duration
