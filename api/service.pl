@@ -1,37 +1,3 @@
-%% Rules
-% Ingredients are available if they're in stock, or all subingredients are available
-available(Request, X) :-
-        stocked(Request, X, _).
-available(Request, X) :-
-        recipe(X, Ingredients, _),
-        findall(I, (member(I, Ingredients), available(Request, I)), Ingredients).
-
-% Gather an optimal recipe breakdown given a user request
-recipe_breakdown(_, [], []).
-recipe_breakdown(Request, Recipe, Optimal) :-
-        recipe(Recipe, Ingredients, _),
-        optimal_ingredients(Request, Ingredients, Optimal).
-
-% Optimal ingredient breakdown
-%  - Prefer items in stock first
-%  - If something isn't readily available but is a product, prefer that
-%  - Otherwise recurse down to sub-ingredients
-optimal_ingredients(_, [], []).
-optimal_ingredients(Request, [H|T], [H|O]) :-
-        stocked(Request, H, _),
-        optimal_ingredients(Request, T, O).
-optimal_ingredients(Request, [H|T], [H|O]) :-
-        not(available(Request, H)),
-        product(H),
-        optimal_ingredients(Request, T, O).
-optimal_ingredients(Request, [H|T], Combined) :-
-        recipe(H, SubIngredients, _),
-        optimal_ingredients(Request, SubIngredients, OptimalSubIngredients),
-        optimal_ingredients(Request, T, OptimalT),
-        append(OptimalSubIngredients, OptimalT, Combined),
-        !.
-
-%% Application
 :- use_module(library(http/thread_httpd)).
 :- use_module(library(http/http_dispatch)).
 :- use_module(library(http/http_parameters)).
@@ -46,6 +12,7 @@ optimal_ingredients(Request, [H|T], Combined) :-
 
 :- consult('ingredients/*').
 :- consult('recipes/*').
+:- consult('rules').
 
 :- http_handler(possibilities(.), list_possibilities, []).
 http:location(possibilities, root(possibilities), []).
@@ -60,6 +27,7 @@ list_possibilities(Request) :-
         http_parameters(Request, [], [form_data(Params)]),
         findall(_, (member(=(K,V), Params), assert(stocked(Request, K,V))), _),
         findall(R, (meal(R), available(Request, R)), Possibilities),
+
         reply_html_page(_, [ table([ \rows(Possibilities) ]) ]),
         retractall(stocked(Request, _, _)).
 
@@ -68,8 +36,9 @@ list_instructions(Request) :-
         http_parameters(Request, [], [form_data(Params)]),
         findall(_, (member(=(K,V), Params), assert(stocked(Request, K,V))), _),
         http_parameters(Request, [recipe(Meal, [])]),
-        recipe_breakdown(Request, Meal, Optimal),
-        prolog_to_json(Optimal, JSON),
+
+        recipe_prerequisites(Request, Meal, Prerequisites),
+        prolog_to_json(Prerequisites, JSON),
         reply_json(json([prerequisites=JSON]), [content_type='text/plain']),
         retractall(stocked(Request, _, _)).
 
