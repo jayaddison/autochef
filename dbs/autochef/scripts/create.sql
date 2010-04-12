@@ -4,11 +4,15 @@ create table tbingredients
 (
     ingredientid serial,
 
+    product boolean not null default ('false'::boolean),
+    meal boolean not null default ('false'::boolean),
+
     duration interval not null,
 
     primary key (ingredientid)
 );
 
+-- Deprecated
 create table tbingredientdependencies
 (
     parentid int references tbingredients (ingredientid),
@@ -18,29 +22,17 @@ create table tbingredientdependencies
 );
 create index ixingredientparents on tbingredientdependencies (childid, parentid);
 
-create table tblanguages
-(
-    languageid char(2),
-
-    primary key (languageid)
-);
-
+-- Deprecated
 create table tbingredienttranslations
 (
     ingredientid int references tbingredients (ingredientid),
-    languageid char(2) references tblanguages (languageid),
+    languageid char(2),
 
     name text not null,
     instructions text not null,
 
-    primary key (ingredientid, languageid)
-);
-
-create table tbmeals
-(
-    ingredientid int references tbingredients (ingredientid),
-
-    primary key (ingredientid)
+    primary key (ingredientid, languageid),
+    unique (languageid, name)
 );
 
 create table tbsuppliers
@@ -48,14 +40,6 @@ create table tbsuppliers
     supplierid char(4),
 
     primary key (supplierid)
-);
-
-create table tbproducts
-(
-    ingredientid int references tbingredients (ingredientid),
-    supplierid char(4) references tbsuppliers (supplierid),
-
-    primary key (ingredientid, supplierid)
 );
 
 create table tbusers
@@ -118,6 +102,3 @@ create type tprecipeingredient as
     starttime interval,
     available bit
 );
-
--- Languages
-insert into tblanguages (languageid) values ('en');

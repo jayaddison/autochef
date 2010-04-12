@@ -57,8 +57,9 @@ begin
         insert into _choseningredients (treenodeid, treeparentid, ingredientid, starttime, available)
         select r.treenodeid, r.treeparentid, r.ingredientid, r.starttime, 0::bit
         from _requiredingredients as r
-        join tbproducts as p on p.ingredientid = r.ingredientid
-        where not exists
+        join tbingredients as p on p.ingredientid = r.ingredientid
+        where p.product
+        and not exists
         (
             select *
             from _possibleuseringredients as p

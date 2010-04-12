@@ -9,9 +9,10 @@ begin
     return query
         select t.ingredientid, t.name
         from fn_userpossibleingredients(username) as i
-        join tbmeals as m on m.ingredientid = i.ingredientid
+        join tbingredients as m on m.ingredientid = i.ingredientid
         join tbingredienttranslations as t on t.ingredientid = i.ingredientid
-        where t.languageid = ''en'';
+        where m.meal
+        and t.languageid = ''en'';
 end;
 '
 language plpgsql;

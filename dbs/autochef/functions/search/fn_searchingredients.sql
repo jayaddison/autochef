@@ -9,8 +9,9 @@ begin
     return query
         select p.ingredientid, t.name as ingredientname
         from tbingredienttranslations as t
-        join tbproducts as p on p.ingredientid = t.ingredientid
-        where t.languageid = languageid
+        join tbingredients as p on p.ingredientid = t.ingredientid
+        where p.product
+        and t.languageid = languageid
         and t.name ilike textcat(''%'', textcat(searchtext, ''%''))
         limit 9;
 end

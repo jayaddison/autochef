@@ -1,7 +1,7 @@
 <project default="create">
 
   <property file="../../www/autochef/src/main/resources/autochef.properties" />
-  <property name="jdbc.classpath" value="/usr/share/java/postgresql.jar" />
+  <property name="jdbc.classpath" value="/usr/share/java/postgresql.jar; /usr/share/jdbc-postgresql/lib/jdbc-postgresql.jar" />
 
   <target name="clean">
     <sql
@@ -56,13 +56,9 @@
         classpath="${jdbc.classpath}"
         url="jdbc:postgresql://${database.hostname}/${database.catalog}"
         userid="${database.username}"
-        password="${database.password}">
-      <path>
-        <fileset dir="scripts/data/base-recipes">
-          <include name="*.sql" />
-        </fileset>
-      </path>
-    </sql>
+        password="${database.password}"
+        src="scripts/data/custom-ingredients.sql"
+    />
     <sql
         driver="org.postgresql.Driver"
         classpath="${jdbc.classpath}"

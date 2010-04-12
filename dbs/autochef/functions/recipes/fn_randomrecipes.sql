@@ -5,9 +5,10 @@ create or replace function fn_randomrecipes
 returns setof tpingredientlink as
 '
     select m.ingredientid, t.name as ingredientname
-    from tbmeals as m
+    from tbingredients as m
     join tbingredienttranslations as t on t.ingredientid = m.ingredientid
-    where t.languageid = languageid
+    where m.meal
+    and t.languageid = languageid
     order by random()
     limit 9;
 '
