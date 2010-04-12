@@ -1,0 +1,34 @@
+ingredient
+===
+
+global
+---
+* identifier (text)
+  - friendly lowercase english name such as 'tomato'
+  - used for localization lookup
+  - used for dependency lookup
+  - used for supplier lookup
+
+* meal (boolean)
+  - whether ingredient is a meal in itself
+  - must be set if involved in recipe search
+
+* product (boolean)
+  - whether ingredient can be purchased off-the-shelf
+  - must be set if involved in supplier search
+
+* duration (time span)
+  - how long the ingredient takes to prepare
+  - may be zero or non-zero regardless of meal/product/dependencies
+
+* dependencies (ingredient list)
+  - if empty, product must be true
+  - if non-empty, sub-ingredients required to make this ingredient
+
+localized
+---
+* name (unicode text)
+  - friendly name of the ingredient in a given locale
+
+* instructions (unicode text)
+  - plaintext instructions for preparation in a given locale
