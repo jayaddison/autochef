@@ -1,3 +1,4 @@
+% Import libraries
 :- use_module(library(http/thread_httpd)).
 :- use_module(library(http/http_dispatch)).
 :- use_module(library(http/http_parameters)).
@@ -5,24 +6,39 @@
 :- use_module(library(http/json_convert)).
 :- use_module(library(http/html_write)).
 
-% Load all ingredients and recipes
-:- multifile meal/1.
+% Up-front predicate declarations
 :- multifile product/1.
-:- multifile recipe/3.
-
-:- consult('ingredients/*').
-:- consult('recipes/*').
-:- consult('rules').
-
-:- http_handler(possibilities(.), list_possibilities, []).
-http:location(possibilities, root(possibilities), []).
-
-:- http_handler(instructions(.), list_instructions, []).
-http:location(instructions, root(instructions), []).
+:- multifile meal/1.
+:- multifile serves/2.
+:- multifile difficulty/2.
+:- multifile tag/2.
+:- multifile ingredient/3.
+:- multifile step/5.
+:- multifile instructions/4.
+:- multifile title/4.
+:- multifile extra/2.
+:- multifile reusable/3.
 
 :- dynamic stocked/3.
 
-% Recipe suggestions handler
+% Load rules database
+:- consult('ingredients/*').
+:- consult('nutrition/*').
+:- consult('utensils/*').
+:- consult('recipes/*').
+:- consult('rules').
+
+% Register HTTP endpoints
+http:location(possibilities, root(possibilities), []).
+http:location(instructions, root(instructions), []).
+
+:- http_handler(possibilities(.), list_possibilities, []).
+:- http_handler(instructions(.), list_instructions, []).
+
+% Start the HTTP server
+:- http_server(http_dispatch, [port(3475)]).
+
+% Handle user recipe suggestion
 list_possibilities(Request) :-
         http_parameters(Request, [], [form_data(Params)]),
         findall(_, (member(=(K,V), Params), assert(stocked(Request, K,V))), _),
@@ -31,7 +47,7 @@ list_possibilities(Request) :-
         reply_html_page(_, [ table([ \rows(Possibilities) ]) ]),
         retractall(stocked(Request, _, _)).
 
-% Recipe instructions handler
+% Handle recipe instruction listings
 list_instructions(Request) :-
         http_parameters(Request, [], [form_data(Params)]),
         findall(_, (member(=(K,V), Params), assert(stocked(Request, K,V))), _),
@@ -42,11 +58,8 @@ list_instructions(Request) :-
         reply_json(json([prerequisites=JSON]), [content_type='text/plain']),
         retractall(stocked(Request, _, _)).
 
-% Render each recipe inside an HTML table row
+% Render a list as a set of HTML table rows
 rows([]) --> [].
 rows([H|T]) -->
 	html(tr([td(H)])),
 	rows(T).
-
-% Start the server
-:- http_server(http_dispatch, [port(3475)]).

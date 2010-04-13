@@ -3,33 +3,49 @@ user recipe options
 call api for possibilities
 
  - input
+   * user locale
    * user ingredients
    * user preferences
 
  - output
    * recipes
-   * recipe durations
-   * recipe nutrition
-   * recipe ingredient usage efficiency
+     - identifier
+     - title (localized)
+     - duration
+     - nutrition
+     - efficiency score
 
 user recipe display
 ---
 all api for instructions
 
  - input
+   * user locale
    * user ingredients
    * user recipe
-   * user servings
+   * servings required
 
  - output
    * prerequisite ingredients
-   * prerequisite ingredient status (available / buy)
-   * prerequisite ingredient quantities
+     - identifier
+     - status (available / buy)
+     - quantity required
 
    * recipe steps
-   * recipe step start times
-   * recipe step durations
-   * recipe step dependencies (opt.)
+     - title (localized)
+     - instructions (localized)
+     - dependencies
+     - utensils
+     - start time
+     - duration
+
+   * utensils
+     - identifier
+     - name (localized)
+
+   * suggested extras
+     - identifier
+     - name (localized)
 
    * summary nutrition
-   * summray duration
+   * summary duration
