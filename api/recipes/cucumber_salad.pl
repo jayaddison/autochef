@@ -3,6 +3,7 @@ meal(cucumber_salad).
 serves(cucumber_salad, 1).
 difficulty(cucumber_salad, 1).
 
+tag(X, vegetarian) :- tag(X, vegan).
 % tag(recipe, keyword).
 tag(cucumber_salad, vegan).
 tag(cucumber_salad, vegetarian).

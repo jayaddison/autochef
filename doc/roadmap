@@ -1,0 +1,11 @@
+autochef roadmap
+===
+
+20100424 - initial recipe load
+20100424 - recipe suggestion service complete
+
+20100424 - recipe service calls
+20100426 - javascript layer to use recipe service json
+
+20100426 - replace login system with facebook connect
+20100428 - persist recipes against facebook ids

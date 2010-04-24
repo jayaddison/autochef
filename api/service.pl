@@ -63,3 +63,9 @@ rows([]) --> [].
 rows([H|T]) -->
 	html(tr([td(H)])),
 	rows(T).
+
+:- assert(stocked(_, cucumber, 1)).
+:- assert(stocked(_, salt, 1)).
+:- assert(stocked(_, pepper, 1)).
+:- assert(stocked(_, seasoned_rice_vinegar, 1)).
+:- assert(stocked(_, water, 1)).
